@@ -7,7 +7,7 @@ const server = http.createServer((req, res) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
     const URL = url.parse(req.url, true)
     if (req.method == 'GET' && URL.pathname.includes('yt-gets') &&  (URL.query.url ||  URL.query.id) ) {
-        ytgets.fetch(URL.query.link).then((data)=>{
+        ytgets.fetch(URL.query.url || URL.query.id).then((data)=>{
             res.writeHead(200,'application/json');
             res.end(JSON.stringify(data));
         }).catch((err)=>{

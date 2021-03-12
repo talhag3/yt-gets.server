@@ -1,28 +1,12 @@
-const http = require("http");
-const ytgets = require("yt-gets")
-const url = require('url')
-const port = 8000;
+const http = require('http');
+const port = process.env.PORT || 3000
 
 const server = http.createServer((req, res) => {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    const URL = url.parse(req.url, true)
-    if (req.method == 'GET' && URL.pathname == '/yt-gets/' &&  URL.query.url &&  URL.query.id ) {
-        ytgets.fetch(URL.query.link).then((data)=>{
-            res.writeHead(200,'application/json');
-            res.end(JSON.stringify(data));
-        }).catch((err)=>{
-            res.writeHead(500);
-            res.end(JSON.stringify(err));
-        })    
-    }else{
-        res.writeHead(404,'application/json');
-        res.end(JSON.stringify({
-            message:'either provide id or video link',
-            help:'HOST/yt-gets?id=XXXXXXX OR HOST/yt-gets?url=XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ONLY GET request'
-        }));
-    }
+  res.statusCode = 200;
+  res.setHeader('Content-Type', 'text/html');
+  res.end('<h1>Hello World</h1>');
 });
 
-server.listen(port, () => {
-    console.log(`Server running at port `+port);
-})
+server.listen(port,() => {
+  console.log(`Server running at port `+port);
+});

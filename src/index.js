@@ -6,7 +6,7 @@ const port = process.env.PORT || 3000
 const server = http.createServer((req, res) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
     const URL = url.parse(req.url, true)
-    if (req.method == 'GET' && URL.pathname == '/yt-gets/' &&  URL.query.url &&  URL.query.id ) {
+    if (req.method == 'GET' && URL.pathname.includes('yt-gets') &&  (URL.query.url ||  URL.query.id) ) {
         ytgets.fetch(URL.query.link).then((data)=>{
             res.writeHead(200,'application/json');
             res.end(JSON.stringify(data));

@@ -10,6 +10,6 @@
   "author": "talhag3 <https://github.com/talhag3>",
   "license": "ISC",
   "dependencies": {
-    "yt-gets": "^1.0.2"
+    "yt-gets": "^2.0.1"
   }
 }
